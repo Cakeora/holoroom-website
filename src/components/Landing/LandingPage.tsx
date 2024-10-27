@@ -125,7 +125,7 @@ export const LandingPage = () => {
           <aside className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
   <img 
     src="/images/image6.png" 
-    alt="Description of Image" 
+    alt="banner" 
     className="flex shrink-0 mx-auto max-w-full bg-zinc-300 h-[717px] rounded-[122px_42px_122px_42px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] w-[570px] max-md:mt-10" 
   />
 </aside>
