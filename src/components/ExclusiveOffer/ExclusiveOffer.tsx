@@ -99,9 +99,9 @@ export const ExclusiveOffer: React.FC = () => {
 
           <nav className="flex gap-5 justify-between mt-44 ml-2.5 text-xl font-semibold text-white whitespace-nowrap max-md:mt-10 max-md:max-w-full">
             <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/a0a7c05e9186977b05b222030dec6a1960a0f1b63d84330891496e4b5dbd8913?placeholderIfAbsent=true&apiKey=e55f9dd769bf47cc97cdb92eee2fce0b" alt="Footer decoration" className="object-contain my-auto w-full aspect-[500] max-md:max-w-full" />
-            <a href="#" className="hover:text-green-200 transition-colors">Terms</a>
-            <a href="#" className="hover:text-green-200 transition-colors">Privacy</a>
-            <a href="#" className="hover:text-green-200 transition-colors">Cookies</a>
+            <a href="https://r.mtdv.me/videos/s6cGXDqcE6" className="hover:text-green-200 transition-colors">Terms</a>
+            <a href="https://r.mtdv.me/videos/s6cGXDqcE6" className="hover:text-green-200 transition-colors">Privacy</a>
+            <a href="https://r.mtdv.me/videos/s6cGXDqcE6" className="hover:text-green-200 transition-colors">Cookies</a>
           </nav>
         </footer>
       </section>
