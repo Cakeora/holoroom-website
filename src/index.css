@@ -1,0 +1,266 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Rochester';
+  src: url('./fonts/Rochester-Regular.ttf') format('truetype');
+  font-weight: normal; /* Adjust according to your font */
+  font-style: normal; /* Adjust according to your font */
+}
+body {
+  margin: 0;
+  font-family: 'Rochester','Roboto';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.main-content {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding-top: 1.75rem; /* pt-7 */
+  padding-right: 4rem; /* px-16 */
+  padding-left: 4rem; /* px-16 */
+  padding-bottom: 8rem; /* pb-32 */
+  background-color: #c6f6d5; /* bg-green-200 */
+}
+.main-banner-content {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding-top: 1.75rem; /* pt-7 */
+  padding-right: 4rem; /* px-16 */
+  padding-left: 4rem; /* px-16 */
+  padding-bottom: 8rem; /* pb-32 */
+  background-color: #c6f6d5; /* bg-green-200 */
+}
+.Nav-content {
+  background-color: #c6f6d5; /* bg-green-200 */
+}
+
+.Nav-buttons{
+padding-left: 300px;
+font-family: 'Roboto', cursive;
+color: #224F34;
+
+}
+.navitem {
+  height: 42px;
+  width: 119px;
+}
+.navbar-logo {
+  font-family: 'Rochester', cursive;
+  color: #224F34;
+}
+
+.navbar-link {
+  transition: color 0.3s ease;
+  color: #224F34; /* Default color */
+}
+
+.navbar-link:hover {
+  color: #228B22; /* Hover color */
+}
+
+.navitem .text-wrapper{
+  display: flex;
+  margin-top: 10px;
+  padding-left: 100px;
+  gap: 40px;
+  color: #224F34;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 64px; /* 320% */
+  letter-spacing: -0.25px;
+}
+.nav-link.active {
+  font-weight: bold;
+  color: #225f34;
+}
+
+
+
+.login-wrapper {
+  display: grid;
+  place-items: center; /* Center both items in the grid */
+  height: 69px;
+  width: 198px;
+}
+/* Rectangle background styling */
+.rectangle {
+
+  grid-area: 1 / 1; /* Positions the rectangle in the grid */
+  z-index: 1; /* Ensures it is behind the button */
+}
+
+/* Login button styling */
+.login-button {
+  background: none; /* Transparent background */
+  border: none; /* No border if unnecessary */
+  font-size: 36px;
+  color: #224F34;
+  font-family: "Rochester";
+  grid-area: 1 / 1; /* Positions the button in the same grid cell as the rectangle */
+  z-index: 2; /* Ensures button is in front of the rectangle */
+  pointer-events: none; /* Optional: if you want clicks to register only on the rectangle */
+}
+
+  
+/* Styles for the header */
+.header {
+  width: 100%;
+  margin-right: 10px;
+
+}
+
+/* Wrapper for all header items */
+.header-content {
+  display: flex;
+  align-items: flex-start;
+ 
+}
+
+/* Container for title */
+.title-container {
+  flex: 0;
+  text-align: center;
+}
+
+.header-title {
+  font-size: 57px;
+  font-style: normal;
+  color: #225f34;
+  line-height: 64px;
+  letter-spacing: -0.25px;
+}
+
+/* Container for navigation items */
+.navigation-container {
+  margin-left: 30px;
+ 
+}
+
+/* Container for cart icon and login button */
+.icon-button-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  gap: 115px;
+  margin-left: auto; /* Pushes the items to the right */
+}
+
+/* Cart icon styling */
+.cart-icon {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.product-card .product-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.05);
+}
+
+/* custom.css */
+.primary-btn {
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease;
+}
+
+.primary-btn:hover {
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
+}
+/* Update these styles in your index.css */
+.product-card {
+  @apply bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md;
+  width: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.product-image {
+  @apply w-full aspect-[4/3] object-cover;
+}
+
+.product-name {
+  color: #224f34;
+  font-family: "Roboto-Regular", Helvetica;
+  font-weight: 600;
+  letter-spacing: -0.25px;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.product-card:hover .product-image {
+  @apply transform scale-105;
+}
+
+.product-details {
+  @apply p-4;
+}
+
+
+.product-price {
+  @apply text-lg font-semibold text-[#224F34];
+}
+
+.product-description {
+  @apply text-sm text-gray-500 mt-2;
+}
+
+
+
+/* Add responsive container for product grid */
+.product-grid-container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Add hover effects */
+.product-card {
+  @apply transform transition-all duration-300 hover:-translate-y-1;
+}
+.productlist-head {
+  height: 124px;
+  width: 425px;
+}
+
+.productlist-head .text-wrapper {
+  color: #224f34;
+  font-family: "Rochester", Helvetica;
+  font-size: 60px;
+  font-weight: 400;
+  left: 0;
+  letter-spacing: 0;
+  line-height: normal;
+  position: sticky;
+  text-align: center;
+  top: 0;
+}
+.font-rochester {
+  font-family: 'Rochester', cursive;
+}
+
+/* Additional responsive styles for max-md (assuming you want margin-top to be 10 on medium screens) */
+@media (max-width: 768px) { /* Adjust this breakpoint as needed */
+  .navItems .text-wrapper {
+    margin-top: 10rem; /* Corresponds to max-md:mt-10 */
+  }
+  .main-content {
+    padding-right: 1.25rem; /* max-md:px-5 */
+    padding-left: 1.25rem; /* max-md:px-5 */
+    padding-bottom: 6rem; /* max-md:pb-24 */
+  }
+}
+code {
+  font-family: 'Rochester';
+}
