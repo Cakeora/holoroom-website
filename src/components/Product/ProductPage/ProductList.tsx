@@ -3,17 +3,37 @@ import React from 'react';
 import ProductCard from '../ProductCard/ProductCard';
 import './ProductList.css';
 
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+}
+
 const ProductList: React.FC = () => {
-  // This could come from an API or props
-  const products = [
+  const products: Product[] = [
     {
       id: 1,
-      name: "Product Name",
-      description: "Product description goes here",
-      price: 59.99,
-      image: "/path/to/image.jpg"
+      name: "Modern Lounge Chair",
+      description: "Elegant and comfortable modern lounge chair",
+      price: 599.99,
+      image: "/images/image3.png"
     },
-    // Add more products as needed
+    {
+      id: 2,
+      name: "Minimal Coffee Table",
+      description: "Sleek and minimal coffee table design",
+      price: 299.99,
+      image: "/images/image4.png"
+    },
+    {
+      id: 3,
+      name: "Ergonomic Office Chair",
+      description: "Professional ergonomic office chair",
+      price: 499.99,
+      image: "/images/image5.png"
+    },
   ];
 
   return (
@@ -25,11 +45,7 @@ const ProductList: React.FC = () => {
         {products.map((product) => (
           <ProductCard
             key={product.id}
-            id={product.id}
-            name={product.name}
-            description={product.description}
-            price={product.price}
-            image={product.image}
+            {...product}
           />
         ))}
       </div>
