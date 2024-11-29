@@ -1,5 +1,7 @@
+// BestSelling.tsx
 import * as React from 'react';
-import  ProductCard  from '../ProductCard/ProductCard';
+import ProductCard from '../ProductCard/ProductCard';
+import './BestSelling.css';
 
 interface Product {
   id: number;
@@ -17,24 +19,20 @@ const products: Product[] = [
 
 export const BestSelling: React.FC = () => {
   return (
-    <section className="flex flex-col items-center max-md:max-w-full">
-      <h2 className="text-8xl tracking-tight leading-none text-center text-green-900 max-md:text-4xl">
-        Best Selling
-      </h2>
-      <p className="text-2xl tracking-tight text-center text-green-900 leading-[64px] max-md:max-w-full">
+    <section className="best-selling">
+      <h2 className="best-selling-title">Best Selling</h2>
+      <p className="best-selling-description">
         Get in on trend with our curated selection of best-selling styles
       </p>
-      <div className="self-stretch mt-24 max-md:mt-10 max-md:max-w-full">
-        <div className="flex gap-5 max-md:flex-col">
+      <div className="products-container">
+        <div className="products-grid">
           {products.map((product) => (
-            <div key={product.id} className="flex flex-col w-[33%] max-md:ml-0 max-md:w-full">
+            <div key={product.id} className="product-column">
             </div>
           ))}
         </div>
       </div>
-      <button className="flex overflow-hidden flex-col justify-center py-4 pr-14 pl-14 mt-40 w-56 max-w-full text-2xl font-medium text-green-900 rounded border-2 border-green-900 border-solid max-md:px-5 max-md:mt-10">
-        See all
-      </button>
+      <button className="see-all-button">See all</button>
     </section>
   );
 };

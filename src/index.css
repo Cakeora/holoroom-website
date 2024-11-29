@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/*index.css*/
+
 
 @font-face {
   font-family: 'Rochester';
@@ -251,16 +250,69 @@ color: #224F34;
 }
 
 /* Additional responsive styles for max-md (assuming you want margin-top to be 10 on medium screens) */
-@media (max-width: 768px) { /* Adjust this breakpoint as needed */
+@media (max-width: 1024px) {
+  .main-content,
+  .main-banner-content {
+      padding-right: 2rem;
+      padding-left: 2rem;
+  }
+
+  .Nav-buttons {
+      padding-left: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content,
+  .main-banner-content {
+      padding-right: 1rem;
+      padding-left: 1rem;
+  }
   .navItems .text-wrapper {
     margin-top: 10rem; /* Corresponds to max-md:mt-10 */
   }
-  .main-content {
-    padding-right: 1.25rem; /* max-md:px-5 */
-    padding-left: 1.25rem; /* max-md:px-5 */
-    padding-bottom: 6rem; /* max-md:pb-24 */
+
+  .Nav-buttons {
+      padding-left: 50px;
+  }
+
+  .header-content {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .icon-button-container {
+      gap: 30px;
+      margin-top: 20px;
+  }
+
+  .navigation-container {
+      margin-left: 0;
+      margin-top: 20px;
   }
 }
-code {
-  font-family: 'Rochester';
+
+@media (max-width: 480px) {
+  .Nav-buttons {
+      padding-left: 20px;
+  }
+
+  .navitem .text-wrapper {
+      padding-left: 20px;
+      gap: 20px;
+      font-size: 16px;
+  }
+
+  .header-title {
+      font-size: 40px;
+  }
+
+  .login-wrapper {
+      width: 150px;
+  }
+
+  .login-button {
+      font-size: 28px;
+  }
 }
+

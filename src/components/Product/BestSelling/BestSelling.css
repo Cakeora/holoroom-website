@@ -1,0 +1,74 @@
+/* BestSelling.css */
+.best-selling {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .best-selling-title {
+    font-size: 6rem;
+    line-height: 1;
+    text-align: center;
+    color: #224F34;
+    letter-spacing: -0.025em;
+  }
+  
+  .best-selling-description {
+    font-size: 1.5rem;
+    line-height: 4rem;
+    text-align: center;
+    color: #224F34;
+    letter-spacing: -0.025em;
+  }
+  
+  .products-container {
+    align-self: stretch;
+    margin-top: 6rem;
+  }
+  
+  .products-grid {
+    display: flex;
+    gap: 1.25rem;
+  }
+  
+  .product-column {
+    display: flex;
+    flex-direction: column;
+    width: 33.333%;
+  }
+  
+  .see-all-button {
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem 3.5rem;
+    margin-top: 10rem;
+    width: 14rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #224F34;
+    border: 2px solid #224F34;
+    border-radius: 0.25rem;
+    background: transparent;
+    cursor: pointer;
+  }
+  
+  @media (max-width: 768px) {
+    .best-selling-title {
+      font-size: 2.5rem;
+    }
+    
+    .products-grid {
+      flex-direction: column;
+    }
+    
+    .product-column {
+      width: 100%;
+    }
+    
+    .see-all-button {
+      margin-top: 2.5rem;
+      padding: 1rem 1.25rem;
+    }
+  }

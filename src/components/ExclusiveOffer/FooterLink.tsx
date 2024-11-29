@@ -1,4 +1,6 @@
+// FooterLink.tsx
 import * as React from 'react';
+import './FooterLink.css';
 
 type FooterLinkProps = {
   text: string;
@@ -8,7 +10,7 @@ type FooterLinkProps = {
 export const FooterLink: React.FC<FooterLinkProps> = ({ text, className }) => (
   <a 
     href="https://r.mtdv.me/videos/s6cGXDqcE6" 
-    className={`mt-5 text-xl font-medium text-green-200 hover:text-white transition-colors ${className || ''}`}
+    className={`footer-link ${className || ''}`}
   >
     {text}
   </a>

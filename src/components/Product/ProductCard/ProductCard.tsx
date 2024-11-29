@@ -1,53 +1,62 @@
-import React from 'react';
-import { FaStar } from 'react-icons/fa'; // Using filled star from Font Awesome
-import { useNavigate } from 'react-router-dom'; // Import from react-router-dom
+// ProductCard.tsx
+import React, { useState } from 'react';
+import { Heart } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import './ProductCard.css';
 
-interface ProductProps {
+interface ProductCardProps {
   id: number;
   name: string;
-  image: string;
   description: string;
   price: number;
-  rating?: number; 
+  image: string;
 }
 
-const ProductCard: React.FC<ProductProps> = ({ id, name, image, rating, price }) => {
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate(`/product/${id}`);
-  };
+export default function ProductCard({ id, name, description, price, image }: ProductCardProps) {
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div 
-      onClick={handleClick}
-      className="product-card cursor-pointer transform transition-transform duration-300 hover:scale-105"
+      className="product-card"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      <img
-        src={image}
-        alt={name}
-        className="product-image"
-        onError={(e) => {
-          const target = e.target as HTMLImageElement;
-          target.onerror = null;
-          console.error(`Failed to load image: ${image}`);
-          target.src = '/placeholder.png';
-        }}
-      />
-      <div className="p-4">
-        <h2 className="product-name">{name}</h2>
-        <div className="flex items-center justify-between mt-2">
-          <p className="product-price text-lg font-semibold text-[#224F34]">
-            ${price.toFixed(2)}
-          </p>
-          <div className="flex items-center gap-1">
-          <span className="text-sm font-medium text-gray-600">{rating || 0}</span>
-            <FaStar className="text-yellow-400" size={16} />
-          </div>
+      <div className="product-header">
+        <div className="image-container">
+          <img
+            src={image}
+            alt={name}
+            className="product-image"
+          />
+          <button className="wishlist-button">
+            <Heart className="heart-icon" />
+            <span className="sr-only">Add to wishlist</span>
+          </button>
+        </div>
+      </div>
+      
+      <div className="product-content">
+        <Link to={`/product/${id}`} className="product-link">
+          <h3 className="product-name">{name}</h3>
+          <p className="product-description">{description}</p>
+        </Link>
+      </div>
+      
+      <div className="product-footer">
+        <p className="product-price">${price.toFixed(2)}</p>
+        <div className="button-container">
+          <button 
+            className={`add-to-cart-button ${isHovered ? 'show' : ''}`}
+          >
+            Add to Cart
+          </button>
+          <button 
+            className={`quick-shop-button ${isHovered ? 'hide' : ''}`}
+          >
+            Quick Shop
+          </button>
         </div>
       </div>
     </div>
   );
-};
-
-export default ProductCard;
+}

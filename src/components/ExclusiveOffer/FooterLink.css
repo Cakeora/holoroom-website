@@ -1,0 +1,13 @@
+/* FooterLink.css */
+.footer-link {
+    margin-top: 1.25rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #C6F6D5;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-link:hover {
+    color: white;
+  }

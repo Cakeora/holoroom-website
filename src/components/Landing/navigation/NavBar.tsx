@@ -1,21 +1,21 @@
-// src/Navbar.tsx
+// Navbar.tsx
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import rectangle26 from "./Rectangle-26.svg"; 
+import rectangle26 from "./Rectangle-26.svg";
+import './NavBar.css';
 
 const Navbar: React.FC = () => {
   return (
-    <nav className="Nav-content flex items-center justify-between p-4 bg-green-200">
-      {/* Logo and Navigation Links */}
-      <div className="flex items-center space-x-6">
-      <div className="title-container">
-      <h1 className="header-title">HoloRoom</h1>
-      </div>
-        <div className="Nav-buttons flex space-x-6 text-lg">
+    <nav className="nav-content">
+      <div className="nav-section">
+        <div className="title-container">
+          <h1 className="header-title">HoloRoom</h1>
+        </div>
+        <div className="nav-buttons">
           <NavLink
             to="/"
             className={({ isActive }) => 
-              `hover:text-green-600 ${isActive ? 'font-bold' : ''}`
+              `nav-link ${isActive ? 'active' : ''}`
             }
           >
             Home
@@ -23,7 +23,7 @@ const Navbar: React.FC = () => {
           <NavLink
             to="/products"
             className={({ isActive }) => 
-              `hover:text-green-600 ${isActive ? 'font-bold' : ''}`
+              `nav-link ${isActive ? 'active' : ''}`
             }
           >
             Products
@@ -31,7 +31,7 @@ const Navbar: React.FC = () => {
           <NavLink
             to="/about"
             className={({ isActive }) => 
-              `hover:text-green-600 ${isActive ? 'font-bold' : ''}`
+              `nav-link ${isActive ? 'active' : ''}`
             }
           >
             About
@@ -39,7 +39,7 @@ const Navbar: React.FC = () => {
           <NavLink
             to="/contact"
             className={({ isActive }) => 
-              `hover:text-green-600 ${isActive ? 'font-bold' : ''}`
+              `nav-link ${isActive ? 'active' : ''}`
             }
           >
             Contact
@@ -47,19 +47,16 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Shopping Cart and Login */}
-      <div className="flex items-center space-x-6">
-        {/* Shopping Cart Icon */}
+      <div className="cart-login-section">
         <img 
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/0ce6431ce6b0caf75bad1c43b4f1ca8ad75fb29ae8dd2dfef71268fcd0a31ba4?placeholderIfAbsent=true&apiKey=e55f9dd769bf47cc97cdb92eee2fce0b" 
           alt="Cart Icon"
-          className="cart-icon w-8 h-8"
+          className="cart-icon"
         />
 
-        {/* Login Button with Rectangle Background */}
-        <div className="login-wrapper relative">
-          <img src={rectangle26} alt="Rectangle" className="rectangle absolute inset-0 z-0" />
-          <button className="login-button relative z-10 text-2xl font-Rochester text-green-900">
+        <div className="login-wrapper">
+          <img src={rectangle26} alt="Rectangle" className="rectangle" />
+          <button className="login-button">
             Login
           </button>
         </div>

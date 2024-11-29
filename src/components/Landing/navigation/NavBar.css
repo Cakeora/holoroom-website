@@ -1,0 +1,100 @@
+/* Navbar.css */
+.nav-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #c6f6d5;
+  }
+  
+  .nav-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-buttons {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 1.125rem;
+    padding-left: 300px;
+    font-family: 'Roboto', cursive;
+    color: #224F34;
+  }
+  
+  .nav-link {
+    color: #224F34;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: #22c55e;
+  }
+  
+  .nav-link.active {
+    font-weight: bold;
+  }
+  
+  .cart-login-section {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .cart-icon {
+    width: 2rem;
+    height: 2rem;
+  }
+  
+  .login-wrapper {
+    position: relative;
+    display: grid;
+    place-items: center;
+    height: 69px;
+    width: 198px;
+  }
+  
+  .rectangle {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+  
+  .login-button {
+    position: relative;
+    z-index: 2;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #224F34;
+    font-family: "Rochester";
+    pointer-events: none;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 1024px) {
+    .nav-buttons {
+      padding-left: 150px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .nav-buttons {
+      padding-left: 50px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .nav-buttons {
+      padding-left: 20px;
+      font-size: 16px;
+      gap: 1rem;
+    }
+  
+    .login-wrapper {
+      width: 150px;
+    }
+  
+    .login-button {
+      font-size: 1.75rem;
+    }
+  }
