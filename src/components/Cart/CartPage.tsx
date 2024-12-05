@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useCart } from './CartProvider';
 import { Minus, Plus } from 'lucide-react';
 import './CartPage.css';
@@ -12,7 +12,12 @@ const CartPage: React.FC = () => {
   const navigate = useNavigate();
 
   const handleCheckout = () => {
-    navigate('/checkout');
+    navigate('/checkout', { 
+      state: { 
+        cartItems: items,
+        cartTotal: total 
+      }
+    });
   };
 
   if (items.length === 0) {
@@ -21,9 +26,9 @@ const CartPage: React.FC = () => {
         <div className="empty-cart-container">
           <h1>Your cart is empty</h1>
           <p>Add some items to your cart to continue shopping.</p>
-          <Link to="/" className="continue-shopping-btn">
+          <button className="continue-shopping-btn" onClick={() => navigate('/')}>
             Continue Shopping
-          </Link>
+          </button>
         </div>
       </div>
     );
@@ -54,30 +59,30 @@ const CartPage: React.FC = () => {
                 <div className="item-details">
                   <div className="item-header">
                     <h3>{item.name}</h3>
-                    <button
-                      onClick={() => removeItem(item.id)}
+                    <button 
                       className="remove-button"
+                      onClick={() => removeItem(item.id)}
                     >
                       remove
                     </button>
                   </div>
                   <div className="item-controls">
                     <div className="quantity-controls">
-                      <button
+                      <button 
                         className="quantity-button"
                         onClick={() => updateQuantity(item.id, Math.max(0, item.quantity - 1))}
                       >
                         <Minus className="icon" />
                       </button>
                       <span className="quantity">{item.quantity}</span>
-                      <button
+                      <button 
                         className="quantity-button"
                         onClick={() => updateQuantity(item.id, item.quantity + 1)}
                       >
                         <Plus className="icon" />
                       </button>
                     </div>
-                    <span className="item-price">${(item.price * item.quantity).toFixed(2)}</span>
+                    <span className="item-price">${item.price.toFixed(2)}</span>
                   </div>
                 </div>
               </div>
@@ -112,7 +117,7 @@ const CartPage: React.FC = () => {
               </div>
             </div>
             <button className="checkout-button" onClick={handleCheckout}>
-              checkout
+              Checkout
             </button>
             <div className="afterpay-info">
               or 4 interest-free payments of ${(total / 4).toFixed(2)} with <span>afterpay</span>

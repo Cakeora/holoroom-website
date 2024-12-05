@@ -4,33 +4,28 @@ import { useState } from 'react'
 import { ChevronDown, ChevronUp } from 'lucide-react'
 import { Button } from './ui/button'
 import { OrderSummary } from './order-summary'
+import { CartItem } from '../../../types/cart'
 
-export function MobileOrderSummary() {
+interface MobileOrderSummaryProps {
+  items: CartItem[]
+  total: number
+}
+
+export function MobileOrderSummary({ items, total }: MobileOrderSummaryProps) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className="lg:hidden border-b">
-      <div className="flex items-center justify-between p-4">
-        <Button
-          variant="ghost"
-          className="flex items-center gap-2 p-0 font-normal"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? (
-            <>
-              Hide order summary <ChevronUp className="h-4 w-4" />
-            </>
-          ) : (
-            <>
-              Show order summary <ChevronDown className="h-4 w-4" />
-            </>
-          )}
-        </Button>
-        <span className="font-medium">$254.88</span>
-      </div>
+    <div className="lg:hidden">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex w-full items-center justify-between border-y p-4"
+      >
+        <span className="text-sm font-medium">Show order summary</span>
+        <span className="text-sm font-medium">${total.toFixed(2)}</span>
+      </button>
       {isOpen && (
         <div className="border-t p-4">
-          <OrderSummary />
+          <OrderSummary items={items} total={total} />
         </div>
       )}
     </div>

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { CheckIcon } from 'lucide-react'
 import { 
@@ -18,11 +19,17 @@ type CheckoutData = {
 }
 
 export default function CheckoutPage() {
-  const [step, setStep] = useState<'information' | 'shipping' | 'payment' | 'thank-you'>('information')
+  const location = useLocation()
+  const cartData = location.state || { cartItems: [], cartTotal: 0 }
+  const [step, setStep] = useState<'information' | 'shipping' | 'payment'>('information')
   const [checkoutData, setCheckoutData] = useState<CheckoutData>({})
 
   return (
-    <CheckoutLayout currentStep={step}>
+    <CheckoutLayout 
+      currentStep={step}
+      cartItems={cartData.cartItems}
+      cartTotal={cartData.cartTotal}
+    >
       {step === 'information' && (
         <InformationStep 
           onSubmit={(data) => {

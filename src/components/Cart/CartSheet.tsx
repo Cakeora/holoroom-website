@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Minus, Plus, ShoppingBag, X } from 'lucide-react';
 import './CartSheet.css';
 
@@ -20,9 +20,20 @@ interface CartSheetProps {
 }
 
 export function CartSheet({ isOpen, onClose, items, onUpdateQuantity, onRemoveItem }: CartSheetProps) {
+  const navigate = useNavigate();
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const freeShippingThreshold = 40;
   const remainingForFreeShipping = Math.max(0, freeShippingThreshold - total);
+
+  const handleCheckout = () => {
+    onClose();
+    navigate('/checkout', { 
+      state: { 
+        cartItems: items,
+        cartTotal: total 
+      }
+    });
+  };
 
   if (!isOpen) return null;
 
@@ -103,9 +114,9 @@ export function CartSheet({ isOpen, onClose, items, onUpdateQuantity, onRemoveIt
               shipping & discounts calculated at checkout
             </p>
           </div>
-          <Link to="/cart" className="checkout-button" onClick={onClose}>
+          <button onClick={handleCheckout} className="checkout-button">
             checkout
-          </Link>
+          </button>
           <div className="afterpay-info">
             or 4 interest-free payments of ${(total / 4).toFixed(2)} with <span>afterpay</span>
           </div>

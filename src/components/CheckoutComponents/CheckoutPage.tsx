@@ -9,7 +9,7 @@ import { ShippingStep } from './components/shipping-step'
 import { PaymentStep } from './components/payment-step'
 import { LoadingSpinner } from './components/loading-spinner'
 import type { InformationInput, ShippingInput, PaymentInput } from '../../lib/validations/checkout'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 export type CheckoutData = {
   information?: InformationInput
@@ -19,6 +19,8 @@ export type CheckoutData = {
 
 export default function CheckoutPage() {
   const navigate = useNavigate()
+  const location = useLocation()
+  const cartData = location.state || { cartItems: [], cartTotal: 0 }
   const [step, setStep] = useState<'information' | 'shipping' | 'payment'>('information')
   const [isLoading, setIsLoading] = useState(false)
   const [isPaymentConfirmed, setIsPaymentConfirmed] = useState(false)
@@ -49,7 +51,11 @@ export default function CheckoutPage() {
   }
 
   return (
-    <CheckoutLayout currentStep={step}>
+    <CheckoutLayout 
+      currentStep={step} 
+      cartItems={cartData.cartItems}
+      cartTotal={cartData.cartTotal}
+    >
       <AnimatePresence mode="wait">
         {isLoading ? (
           <motion.div

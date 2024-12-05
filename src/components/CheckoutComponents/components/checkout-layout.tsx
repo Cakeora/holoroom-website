@@ -2,16 +2,24 @@ import { ReactNode } from 'react'
 import { Logo } from './logo'
 import { OrderSummary } from './order-summary'
 import { MobileOrderSummary } from './mobile-order-summary'
+import { CartItem } from '../../../types/cart'
 
 interface CheckoutLayoutProps {
   children: ReactNode
-  currentStep: 'information' | 'shipping' | 'payment' | 'thank-you'
+  currentStep: 'information' | 'shipping' | 'payment'
+  cartItems: CartItem[]
+  cartTotal: number
 }
 
-export function CheckoutLayout({ children, currentStep }: CheckoutLayoutProps) {
+export function CheckoutLayout({ 
+  children, 
+  currentStep,
+  cartItems,
+  cartTotal 
+}: CheckoutLayoutProps) {
   return (
     <div className="min-h-screen bg-white">
-      <MobileOrderSummary />
+      <MobileOrderSummary items={cartItems} total={cartTotal} />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-x-8 lg:grid-cols-2">
           <div className="py-6 sm:py-12">
@@ -48,8 +56,10 @@ export function CheckoutLayout({ children, currentStep }: CheckoutLayoutProps) {
             {children}
           </div>
 
-          <div className="hidden lg:block py-12">
-            <OrderSummary />
+          <div className="hidden lg:block">
+            <div className="sticky top-6">
+              <OrderSummary items={cartItems} total={cartTotal} />
+            </div>
           </div>
         </div>
       </div>
