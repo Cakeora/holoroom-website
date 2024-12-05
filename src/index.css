@@ -174,12 +174,7 @@ color: #224F34;
 
 }
 
-/* Wrapper for all header items */
-.header-content {
-  display: flex;
-  align-items: flex-start;
- 
-}
+
 
 /* Container for title */
 .title-container {

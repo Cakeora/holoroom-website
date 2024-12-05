@@ -15,37 +15,42 @@ import { CheckoutRootLayout } from './components/CheckoutComponents/checkout-roo
 import { ThankYouStep } from './components/CheckoutComponents/components/thank-you-step';
 import { CartProvider } from './components/Cart/CartProvider';
 import Footer from './components/Footer/Footer';
+import './App.css';
 
 const AppContent: React.FC = () => {
   const location = useLocation();
   const isCheckoutFlow = location.pathname === '/checkout' || location.pathname === '/thank-you';
 
   return (
-    <CartProvider>
-      {!isCheckoutFlow && <Navbar />}
-      <main className="app-main">
-        <Routes>
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<SignIn />} />
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/products" element={<ProductList />} />
-          <Route path="/product/:id" element={<ProductPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/cart" element={<CartPage />} />
-          
-          {/* Checkout routes */}
-          <Route path="/checkout" element={<CheckoutRootLayout />} />
-          <Route path="/thank-you" element={<ThankYouStep />} />
-        </Routes>
-      </main>
-      {!isCheckoutFlow && (
-        <>
-          <ExclusiveOffer />
-          <Footer />
-        </>
-      )}
-    </CartProvider>
+    <div className="app-container">
+      <CartProvider>
+        <div className="app-content">
+          {!isCheckoutFlow && <Navbar />}
+          <main className="app-main">
+            <Routes>
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="/login" element={<SignIn />} />
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/products" element={<ProductList />} />
+              <Route path="/product/:id" element={<ProductPage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/cart" element={<CartPage />} />
+              
+              {/* Checkout routes */}
+              <Route path="/checkout" element={<CheckoutRootLayout />} />
+              <Route path="/thank-you" element={<ThankYouStep />} />
+            </Routes>
+          </main>
+          {!isCheckoutFlow && (
+            <>
+              <ExclusiveOffer />
+              <Footer />
+            </>
+          )}
+        </div>
+      </CartProvider>
+    </div>
   );
 };
 
