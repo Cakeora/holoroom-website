@@ -54,7 +54,6 @@
     border: 1px solid #9ae6b4;
     border-radius: 4px;
     font-size: 1rem;
-    width: 100%;
     transition: border-color 0.2s ease;
     background-color: white;
   }

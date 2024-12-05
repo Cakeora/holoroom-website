@@ -33,9 +33,11 @@ export const ExclusiveOffer: React.FC = () => {
             />
           </div>
           <article className="offer-content">
-            <h1 className="offer-title">Exclusive offer</h1>
+            <h2 className="offer-title">
+              Exclusive Offer
+            </h2>
             <p className="offer-description">
-              Unlock the ultimate style upgrade with our exclusive offer Enjoy savings of up to 40% off on our latest New Arrivals
+              Get up to 60% off in the end of the year sale
             </p>
             <div className="countdown-container">
               {countdownData.map((item, index) => (
@@ -47,82 +49,6 @@ export const ExclusiveOffer: React.FC = () => {
             </button>
           </article>
         </div>
-
-        <footer className="main-footer">
-          <div className="footer-content">
-            <div className="footer-grid">
-              <div className="brand-section">
-                <h2 className="brand-title">HoloRoom</h2>
-                <p className="brand-description">
-                  Discover modern and elegant furniture pieces that reflect your style and enhance your living space.
-                </p>
-                <div className="social-icons">
-                  {socialLinks.map((link, index) => (
-                    <a 
-                      key={index} 
-                      href={link.href}
-                      className="social-icon-link"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {link.icon}
-                    </a>
-                  ))}
-                </div>
-              </div>
-
-              <div className="links-column">
-                <h3 className="column-title">Shop</h3>
-                <div className="footer-links">
-                  {shopLinks.map((link) => (
-                    <Link key={link} to={`/${link.toLowerCase()}`} className="footer-link">
-                      {link}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              <div className="right-column">
-                <div className="company-section">
-                  <h3 className="column-title">Company</h3>
-                  <div className="footer-links">
-                    {companyLinks.map((link) => (
-                      <Link key={link} to={`/${link.toLowerCase().replace(' ', '-')}`} className="footer-link">
-                        {link}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="newsletter-section">
-                  <h3 className="column-title">Stay Up To Date</h3>
-                  <form className="newsletter-form" onSubmit={(e) => e.preventDefault()}>
-                    <div className="input-group">
-                      <input
-                        type="email"
-                        placeholder="Enter your email"
-                        className="newsletter-input"
-                        aria-label="Email for newsletter"
-                      />
-                      <button type="submit" className="newsletter-submit">
-                        Subscribe
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-
-            <div className="bottom-nav">
-              <div className="bottom-nav-links">
-                <Link to="/terms" className="bottom-nav-link">Terms</Link>
-                <Link to="/privacy" className="bottom-nav-link">Privacy</Link>
-                <Link to="/cookies" className="bottom-nav-link">Cookies</Link>
-              </div>
-              <p className="copyright">© 2024 HoloRoom. All rights reserved.</p>
-            </div>
-          </div>
-        </footer>
       </section>
     </main>
   );

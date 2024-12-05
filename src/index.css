@@ -1,5 +1,64 @@
 /*index.css*/
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 47.4% 11.2%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 210 40% 98%;
+    --ring: 215 20.2% 65.1%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+    --muted: 223 47% 11%;
+    --muted-foreground: 215.4 16.3% 56.9%;
+    --accent: 216 34% 17%;
+    --accent-foreground: 210 40% 98%;
+    --popover: 224 71% 4%;
+    --popover-foreground: 215 20.2% 65.1%;
+    --border: 216 34% 17%;
+    --input: 216 34% 17%;
+    --card: 224 71% 4%;
+    --card-foreground: 213 31% 91%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 1.2%;
+    --secondary: 222.2 47.4% 11.2%;
+    --secondary-foreground: 210 40% 98%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+    --ring: 216 34% 17%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
 
 @font-face {
   font-family: 'Rochester';
@@ -249,70 +308,94 @@ color: #224F34;
   font-family: 'Rochester', cursive;
 }
 
-/* Additional responsive styles for max-md (assuming you want margin-top to be 10 on medium screens) */
+/* Responsive breakpoints */
+/* Tablets */
 @media (max-width: 1024px) {
   .main-content,
   .main-banner-content {
-      padding-right: 2rem;
-      padding-left: 2rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
   }
 
   .Nav-buttons {
-      padding-left: 150px;
+    padding-left: 100px;
   }
+  
+  /* Adjust font sizes for better readability */
+  .header-title {
+    font-size: 48px;
+  }
+  
+
 }
 
+/* Mobile Landscape */
 @media (max-width: 768px) {
   .main-content,
   .main-banner-content {
-      padding-right: 1rem;
-      padding-left: 1rem;
-  }
-  .navItems .text-wrapper {
-    margin-top: 10rem; /* Corresponds to max-md:mt-10 */
-  }
-
-  .Nav-buttons {
-      padding-left: 50px;
+    padding: 1rem;
   }
 
   .header-content {
-      flex-direction: column;
-      align-items: center;
+    flex-direction: column;
+    gap: 1rem;
   }
 
   .icon-button-container {
-      gap: 30px;
-      margin-top: 20px;
+    width: 100%;
+    justify-content: center;
+    gap: 2rem;
   }
 
-  .navigation-container {
-      margin-left: 0;
-      margin-top: 20px;
-  }
-}
-
-@media (max-width: 480px) {
+  /* Adjust navigation for mobile */
   .Nav-buttons {
-      padding-left: 20px;
+    padding-left: 0;
+    justify-content: center;
   }
 
   .navitem .text-wrapper {
-      padding-left: 20px;
-      gap: 20px;
-      font-size: 16px;
+    padding-left: 0;
+    gap: 1rem;
+    font-size: 16px;
+  }
+}
+
+/* Mobile Portrait */
+@media (max-width: 480px) {
+  body {
+    font-size: 14px; /* Base font size for mobile */
   }
 
   .header-title {
-      font-size: 40px;
+    font-size: 36px;
   }
 
-  .login-wrapper {
-      width: 150px;
+  .product-card {
+    width: 100%; /* Single column for mobile */
   }
 
-  .login-button {
-      font-size: 28px;
+  /* Adjust buttons and interactive elements for touch */
+  .login-button,
+  .nav-link,
+  .icon-button {
+    min-height: 44px; /* Minimum touch target size */
+    min-width: 44px;
+  }
+  
+  /* Improve spacing for mobile */
+  .product-details {
+    padding: 0.75rem;
+  }
+}
+
+/* Add fluid typography */
+@media (min-width: 320px) {
+  :root {
+    --fluid-typography: calc(14px + (18 - 14) * ((100vw - 320px) / (1200 - 320)));
+  }
+
+  body {
+    font-size: var(--fluid-typography);
   }
 }
 

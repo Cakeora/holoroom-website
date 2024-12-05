@@ -2,6 +2,7 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './ProductPage.css';
+import { useCart } from '../../Cart/CartProvider';
 
 interface Product {
   id: number;
@@ -15,6 +16,7 @@ interface Product {
 const ProductPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { addItem } = useCart();
 
   // Mock product data - in a real app, this would come from an API
   const products: Product[] = [
@@ -55,6 +57,17 @@ const ProductPage: React.FC = () => {
     return <div className="product-not-found">Product not found. Redirecting to products page...</div>;
   }
 
+  const handleAddToCart = () => {
+    if (product) {
+      addItem({
+        id: product.id.toString(),
+        name: product.name,
+        price: product.price,
+        image: product.image,
+      });
+    }
+  };
+
   return (
     <div className="product-page">
       <div className="product-container">
@@ -75,7 +88,9 @@ const ProductPage: React.FC = () => {
           )}
 
           <div className="product-actions">
-            <button className="add-to-cart">Add to Cart</button>
+            <button className="add-to-cart" onClick={handleAddToCart}>
+              Add to Cart
+            </button>
             <button className="buy-now">Buy Now</button>
           </div>
         </div>
