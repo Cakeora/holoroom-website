@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
-import { orders } from '../../api'; // Adjust the import based on your API structure
+import './OrderHistory.css'; // Import the CSS file
 
 interface OrderItem {
   id: string;
@@ -20,28 +20,12 @@ interface Order {
 const OrderHistory: React.FC = () => {
   const { user } = useAuth();
   const [ordersList, setOrdersList] = useState<Order[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchOrders = async () => {
-      try {
-        const response = await orders.getMyOrders();
-        setOrdersList(response.data);
-      } catch (err: any) {
-        setError(err.response?.data?.message || 'Failed to fetch orders');
-      } finally {
-        setLoading(false);
-      }
-    };
-
     if (user) {
-      fetchOrders();
+      setOrdersList(user.orders || []);
     }
   }, [user]);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
 
   return (
     <div className="order-history">

@@ -1,28 +1,62 @@
-.order-history {
-  padding: 2rem;
+.account-page {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: #f8faf9; /* Light background for contrast */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.order-item {
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  padding: 1rem;
+.account-page h1 {
+  color: #224F34; /* Main theme color */
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  font-family: 'Rochester', cursive; /* Consistent font style */
+}
+
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid */
+  gap: 1rem; /* Space between buttons */
+}
+
+.toggle-button {
+  background-color: #224F34; /* Main theme color */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1rem; /* Consistent font size */
+}
+
+.toggle-button:hover {
+  background-color: #1a3f29; /* Darker shade on hover */
+}
+
+.order-history,
+.addresses,
+.payment-methods {
+  margin-top: 1rem;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.order-history h2,
+.addresses h2,
+.payment-methods h2 {
+  color: #224F34;
+  font-size: 2rem;
   margin-bottom: 1rem;
 }
 
-.order-items {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
+@media (max-width: 768px) {
+  .account-page {
+    padding: 1rem; /* Adjust padding for mobile */
+  }
 
-.order-item-details {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+  .toggle-button {
+    font-size: 0.9rem; /* Smaller font size for mobile */
+  }
 }
-
-.order-item-details img {
-  width: 50px; /* Adjust size as needed */
-  height: 50px; /* Adjust size as needed */
-  border-radius: 4px;
-} 
+  

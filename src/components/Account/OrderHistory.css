@@ -1,0 +1,48 @@
+.order-history {
+  margin-top: 2rem;
+}
+
+.order-history h2 {
+  color: #224F34;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.order-item {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: white; /* White background for order items */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.order-item h3 {
+  color: #4a5568; /* Darker text for order ID */
+}
+
+.order-item-details {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.order-item-details img {
+  width: 80px; /* Adjust size for better visibility */
+  height: 80px;
+  border-radius: 4px;
+}
+
+.order-item-details div {
+  flex: 1; /* Allow details to take available space */
+}
+
+.order-item-details p {
+  margin: 0.25rem 0; /* Spacing for item details */
+}
+
+.order-history p {
+  color: #666; /* Grey color for no orders found message */
+  font-size: 1.1rem;
+} 

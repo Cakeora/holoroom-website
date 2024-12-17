@@ -6,6 +6,22 @@ interface User {
   name: string;
   email: string;
   isAdmin: boolean;
+  orders?: Order[];
+}
+
+interface OrderItem {
+  id: string;
+  name: string;
+  quantity: number;
+  price: number;
+  image: string;
+}
+
+interface Order {
+  _id: string;
+  orderItems: OrderItem[];
+  totalPrice: number;
+  createdAt: string;
 }
 
 interface AuthContextType {
@@ -26,61 +42,80 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Check for existing token and validate it
+    // Simulate fetching user data
+    const mockUsers = {
+      'testuser1@example.com': {
+        _id: 'testuser1',
+        name: 'Test User 1',
+        email: 'testuser1@example.com',
+        isAdmin: false,
+        orders: [
+          {
+            _id: 'order1',
+            orderItems: [
+              {
+                id: 'lr1',
+                name: 'Modern Comfort Sofa',
+                quantity: 1,
+                price: 1299.99,
+                image: '/images/products/living-room/sofa-1.jpg',
+              },
+            ],
+            totalPrice: 1299.99,
+            createdAt: '2024-03-01T12:00:00Z',
+          },
+          {
+            _id: 'order2',
+            orderItems: [
+              {
+                id: 'lr2',
+                name: 'Minimalist Coffee Table',
+                quantity: 2,
+                price: 449.99,
+                image: '/images/products/living-room/table-1.jpg',
+              },
+            ],
+            totalPrice: 899.98,
+            createdAt: '2024-03-05T12:00:00Z',
+          },
+        ],
+      },
+      'testuser2@example.com': {
+        _id: 'testuser2',
+        name: 'Test User 2',
+        email: 'testuser2@example.com',
+        isAdmin: false,
+        orders: [],
+      },
+    };
+
     const token = localStorage.getItem('token');
     if (token) {
-      auth.getProfile()
-        .then(response => {
-          setUser(response.data);
-        })
-        .catch(() => {
-          localStorage.removeItem('token');
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    } else {
-      setLoading(false);
+      const userEmail = token;
+      const fetchedUser = mockUsers[userEmail] || null;
+      setUser(fetchedUser);
     }
+    setLoading(false);
   }, []);
 
   const login = async (email: string, password: string) => {
-    try {
-      setError(null);
-      const response = await auth.login(email, password);
-      localStorage.setItem('token', response.data.token);
-      setUser(response.data);
-    } catch (err: any) {
-      setError(err.response?.data?.message || 'Login failed');
-      throw err;
-    }
-  };
+    // Simulate login
+    const mockUsers = {
+      'testuser1@example.com': { /* ... */ },
+      'testuser2@example.com': { /* ... */ },
+    };
 
-  const register = async (name: string, email: string, password: string) => {
-    try {
-      setError(null);
-      const response = await auth.register(name, email, password);
-      localStorage.setItem('token', response.data.token);
-      setUser(response.data);
-    } catch (err: any) {
-      setError(err.response?.data?.message || 'Registration failed');
-      throw err;
+    if (mockUsers[email]) {
+      localStorage.setItem('token', email);
+      setUser(mockUsers[email]);
+    } else {
+      throw new Error('Invalid email or password');
     }
   };
 
   const logout = () => {
     localStorage.removeItem('token');
     setUser(null);
-  };
-
-  const forgotPassword = async (email: string) => {
-    try {
-      setError(null);
-      await auth.forgotPassword(email);
-    } catch (err: any) {
-      setError(err.response?.data?.message || 'Password reset request failed');
-      throw err;
-    }
   };
 
   return (
@@ -90,9 +125,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         loading, 
         error, 
         login, 
-        register, 
+        register: async () => {},
         logout, 
-        forgotPassword 
+        forgotPassword: async () => {}
       }}
     >
       {children}

@@ -21,6 +21,7 @@ import CheckoutLayout from './components/Checkout/CheckoutLayout';
 import NewsletterPopup from './components/Newsletter/NewsletterPopup';
 import CategoryPage from './components/Product/CategoryPage/CategoryPage';
 import Testimonials from './components/Testimonials/Testimonials';
+import Account from './components/Account/Account';
 
 const AppContent: React.FC = () => {
   const location = useLocation();
@@ -47,6 +48,7 @@ const AppContent: React.FC = () => {
               <Route path="/thank-you" element={<ThankYouStep />} />
               <Route path="/products/:category" element={<CategoryPage />} />
               <Route path="/products/:category/:year" element={<CategoryPage />} />
+              <Route path="/account" element={<Account />} />
             </Routes>
           </main>
           {!isCheckoutFlow && (
