@@ -2,7 +2,7 @@
 .product-list {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 1.5rem;
+    padding: 2rem 1rem;
   }
   
   .product-list-header {
@@ -48,7 +48,7 @@
     }
   }
   
-  @media (max-width: 480px) {
+  @media (max-width: 768px) {
     .product-list {
       padding: 1rem;
     }

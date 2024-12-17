@@ -1,0 +1,28 @@
+.order-history {
+  padding: 2rem;
+}
+
+.order-item {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.order-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.order-item-details {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.order-item-details img {
+  width: 50px; /* Adjust size as needed */
+  height: 50px; /* Adjust size as needed */
+  border-radius: 4px;
+} 

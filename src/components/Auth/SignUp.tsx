@@ -1,9 +1,14 @@
 // src/components/Auth/SignUp.tsx
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
 import './SignUp.css';
 
 const SignUp: React.FC = () => {
+  const { register, error: authError } = useAuth();
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -68,11 +73,25 @@ const SignUp: React.FC = () => {
     return isValid;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (validateForm()) {
-      // Handle form submission
-      console.log('Form submitted:', formData);
+      try {
+        setIsLoading(true);
+        await register(
+          `${formData.firstName} ${formData.lastName}`,
+          formData.email,
+          formData.password
+        );
+        navigate('/'); // Redirect to home after successful registration
+      } catch (err) {
+        setErrors(prev => ({
+          ...prev,
+          email: authError || 'Registration failed. Please try again.'
+        }));
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
 
@@ -87,41 +106,39 @@ const SignUp: React.FC = () => {
   return (
     <article className="customer-register-wrapper">
       <div className="customer-register">
-        <h1 className="customer-register__title">Create an Account</h1>
+        <h1 className="customer-register__title">Create Account</h1>
         
         <div className="customer-register__register">
           <form onSubmit={handleSubmit} className="form form--create-customer">
-            <div className="form__field form__field--text form__field--group">
-              <div className="input-wrapper">
-                <label htmlFor="firstName">First Name</label>
+            <div className="form__field--group">
+              <div className="form__field">
+                <label htmlFor="firstName">First name</label>
                 <input
                   type="text"
                   id="firstName"
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleInputChange}
-                  placeholder="First Name"
                   className={`input ${errors.firstName ? 'input--error' : ''}`}
                 />
                 {errors.firstName && <span className="error-message">{errors.firstName}</span>}
               </div>
 
-              <div className="input-wrapper">
-                <label htmlFor="lastName">Last Name</label>
+              <div className="form__field">
+                <label htmlFor="lastName">Last name</label>
                 <input
                   type="text"
                   id="lastName"
                   name="lastName"
                   value={formData.lastName}
                   onChange={handleInputChange}
-                  placeholder="Last Name"
                   className={`input ${errors.lastName ? 'input--error' : ''}`}
                 />
                 {errors.lastName && <span className="error-message">{errors.lastName}</span>}
               </div>
             </div>
 
-            <div className="form__field form__field--email">
+            <div className="form__field">
               <label htmlFor="email">Email</label>
               <input
                 type="email"
@@ -129,13 +146,12 @@ const SignUp: React.FC = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                placeholder="Email"
                 className={`input ${errors.email ? 'input--error' : ''}`}
               />
               {errors.email && <span className="error-message">{errors.email}</span>}
             </div>
 
-            <div className="form__field form__field--password">
+            <div className="form__field">
               <label htmlFor="password">Password</label>
               <input
                 type="password"
@@ -143,22 +159,19 @@ const SignUp: React.FC = () => {
                 name="password"
                 value={formData.password}
                 onChange={handleInputChange}
-                placeholder="Password"
                 className={`input ${errors.password ? 'input--error' : ''}`}
               />
               {errors.password && <span className="error-message">{errors.password}</span>}
-              <span className="message">Must be at least 6 characters long</span>
             </div>
 
-            <div className="form__field form__field--confirm-password">
-              <label htmlFor="confirmPassword">Re-enter password</label>
+            <div className="form__field">
+              <label htmlFor="confirmPassword">Confirm password</label>
               <input
                 type="password"
                 id="confirmPassword"
                 name="confirmPassword"
                 value={formData.confirmPassword}
                 onChange={handleInputChange}
-                placeholder="Re-enter password"
                 className={`input ${errors.confirmPassword ? 'input--error' : ''}`}
               />
               {errors.confirmPassword && <span className="error-message">{errors.confirmPassword}</span>}
@@ -174,8 +187,7 @@ const SignUp: React.FC = () => {
                 className="checkbox"
               />
               <label htmlFor="acceptsMarketing" className="legal-terms">
-                I would like to receive emails with updates on products, offers, promotions, and other marketing information.
-                I understand that I can opt out of these communications at any time.
+                Subscribe to our newsletter
               </label>
             </div>
 
@@ -189,16 +201,20 @@ const SignUp: React.FC = () => {
                 className="checkbox"
               />
               <label htmlFor="acceptsTerms" className="legal-terms">
-                Please agree to our <Link to="/terms">Terms</Link>,{' '}
+                I agree to the <Link to="/terms">Terms</Link>,{' '}
                 <Link to="/privacy">Privacy Policy</Link>, and{' '}
-                <Link to="/rewards-terms">Rewards Program Terms</Link> to create an account
+                <Link to="/rewards-terms">Rewards Program Terms</Link>
               </label>
               {errors.terms && <span className="error-message">{errors.terms}</span>}
             </div>
 
             <div className="form__actions">
-              <button type="submit" className="action action--secondary">
-                Create Account
+              <button 
+                type="submit" 
+                className="action action--secondary"
+                disabled={isLoading}
+              >
+                {isLoading ? 'Creating Account...' : 'Create Account'}
               </button>
             </div>
           </form>

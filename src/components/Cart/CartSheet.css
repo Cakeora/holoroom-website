@@ -300,4 +300,22 @@
     width: 28px;
     font-size: 0.8rem;
   }
+}
+
+@media (max-width: 768px) {
+  .cart-sheet {
+    width: 100%;
+  }
+
+  .cart-content {
+    padding: 1rem;
+  }
+
+  .cart-item {
+    padding: 0.75rem;
+  }
+
+  .cart-footer {
+    padding: 1rem;
+  }
 } 

@@ -1,0 +1,234 @@
+.newsletter-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.newsletter-popup {
+  background-color: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 800px;
+  position: relative;
+  animation: slideIn 0.5s ease-out;
+  overflow: hidden;
+  display: flex;
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: color 0.2s;
+}
+
+.close-button:hover {
+  color: #224F34;
+}
+
+.newsletter-content {
+  display: flex;
+  width: 100%;
+}
+
+.offer-image {
+  flex: 1;
+  background-color: #c6f6d5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.promo-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.offer-content {
+  flex: 1;
+  padding: 2.5rem;
+  text-align: left;
+}
+
+.newsletter-content h2 {
+  color: #224F34;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-family: 'Rochester', cursive;
+  line-height: 1.2;
+}
+
+.discount-text {
+  font-size: 1.25rem;
+  color: #224F34;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.offer-details {
+  color: #4a5568;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.newsletter-input {
+  width: 100%;
+  padding: 0.875rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+.newsletter-input:focus {
+  outline: none;
+  border-color: #224F34;
+  box-shadow: 0 0 0 3px rgba(34, 79, 52, 0.1);
+}
+
+/* Style the autocomplete suggestions */
+.newsletter-input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset;
+  -webkit-text-fill-color: #224F34;
+}
+
+.newsletter-button {
+  width: 100%;
+  padding: 1rem;
+  background-color: #224F34;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 1.125rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.newsletter-button:hover {
+  background-color: #1a3d28;
+}
+
+.terms {
+  font-size: 0.75rem;
+  color: #666;
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .newsletter-popup {
+    width: 95%;
+    margin: 1rem;
+  }
+
+  .newsletter-content {
+    flex-direction: column;
+  }
+
+  .offer-image {
+    height: 150px;
+  }
+
+  .offer-content {
+    padding: 1.5rem;
+  }
+
+  .success-message {
+    padding: 1.5rem;
+  }
+
+  .success-message h2 {
+    font-size: 2rem;
+  }
+}
+
+.success-message {
+  text-align: center;
+  padding: 3rem;
+  width: 100%;
+  background-color: white;
+}
+
+.success-icon {
+  width: 64px;
+  height: 64px;
+  background-color: #c6f6d5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+}
+
+.success-icon svg {
+  color: #224F34;
+}
+
+.success-message h2 {
+  color: #224F34;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-family: 'Rochester', cursive;
+}
+
+.confirmation-text {
+  color: #4a5568;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.confirmed-email {
+  color: #224F34;
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem;
+  background-color: #f0fff4;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.next-steps {
+  color: #4a5568;
+  font-size: 1rem;
+  line-height: 1.6;
+} 

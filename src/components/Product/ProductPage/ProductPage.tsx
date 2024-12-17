@@ -3,6 +3,7 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './ProductPage.css';
 import { useCart } from '../../Cart/CartProvider';
+import ReviewSection from '../Reviews/ReviewSection';
 
 interface Product {
   id: number;
@@ -16,7 +17,7 @@ interface Product {
 const ProductPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { addItem } = useCart();
+  const { addToCart } = useCart();
 
   // Mock product data - in a real app, this would come from an API
   const products: Product[] = [
@@ -59,7 +60,7 @@ const ProductPage: React.FC = () => {
 
   const handleAddToCart = () => {
     if (product) {
-      addItem({
+      addToCart({
         id: product.id.toString(),
         name: product.name,
         price: product.price,
@@ -95,6 +96,8 @@ const ProductPage: React.FC = () => {
           </div>
         </div>
       </div>
+      
+      <ReviewSection />
     </div>
   );
 };

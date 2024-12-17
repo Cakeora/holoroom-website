@@ -1,9 +1,14 @@
-// src/components/Auth/SignIn.tsx
+// src/components/Auth/LogIn.tsx
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
 import './LogIn.css';
 
 const SignIn: React.FC = () => {
+  const { login, error: authError } = useAuth();
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -36,11 +41,21 @@ const SignIn: React.FC = () => {
     return isValid;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (validateForm()) {
-      // Handle form submission
-      console.log('Form submitted:', formData);
+      try {
+        setIsLoading(true);
+        await login(formData.email, formData.password);
+        navigate('/'); // Redirect to home after successful login
+      } catch (err) {
+        setErrors({
+          email: authError || 'Invalid email or password',
+          password: ''
+        });
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
 
@@ -108,8 +123,12 @@ const SignIn: React.FC = () => {
             </div>
 
             <div className="form__actions">
-              <button type="submit" className="action action--secondary">
-                Log In
+              <button 
+                type="submit" 
+                className="action action--secondary"
+                disabled={isLoading}
+              >
+                {isLoading ? 'Logging in...' : 'Log In'}
               </button>
             </div>
           </form>

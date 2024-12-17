@@ -1,6 +1,7 @@
 // src/App.tsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
 import Navbar from './components/Navigation/Navbar';
 import { LandingPage } from './components/Landing/LandingPage';
 import ProductList from './components/Product/ProductPage/ProductList';
@@ -16,10 +17,14 @@ import { ThankYouStep } from './components/CheckoutComponents/components/thank-y
 import { CartProvider } from './components/Cart/CartProvider';
 import Footer from './components/Footer/Footer';
 import './App.css';
+import CheckoutLayout from './components/Checkout/CheckoutLayout';
+import NewsletterPopup from './components/Newsletter/NewsletterPopup';
+import CategoryPage from './components/Product/CategoryPage/CategoryPage';
+import Testimonials from './components/Testimonials/Testimonials';
 
 const AppContent: React.FC = () => {
   const location = useLocation();
-  const isCheckoutFlow = location.pathname === '/checkout' || location.pathname === '/thank-you';
+  const isCheckoutFlow = location.pathname.startsWith('/checkout');
 
   return (
     <div className="app-container">
@@ -38,17 +43,21 @@ const AppContent: React.FC = () => {
               <Route path="/cart" element={<CartPage />} />
               
               {/* Checkout routes */}
-              <Route path="/checkout" element={<CheckoutRootLayout />} />
+              <Route path="/checkout" element={<CheckoutLayout />} />
               <Route path="/thank-you" element={<ThankYouStep />} />
+              <Route path="/products/:category" element={<CategoryPage />} />
+              <Route path="/products/:category/:year" element={<CategoryPage />} />
             </Routes>
           </main>
           {!isCheckoutFlow && (
             <>
               <ExclusiveOffer />
+              <Testimonials />
               <Footer />
             </>
           )}
         </div>
+        <NewsletterPopup />
       </CartProvider>
     </div>
   );
@@ -56,9 +65,11 @@ const AppContent: React.FC = () => {
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <AppContent />
-    </Router>
+    <AuthProvider>
+      <Router>
+        <AppContent />
+      </Router>
+    </AuthProvider>
   );
 };
 
