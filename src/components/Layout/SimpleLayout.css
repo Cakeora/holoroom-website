@@ -1,0 +1,10 @@
+.simple-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure the layout takes full height */
+}
+
+.simple-layout-content {
+  flex: 1; /* Allow the content area to grow */
+  padding: 2rem; /* Add some padding */
+} 

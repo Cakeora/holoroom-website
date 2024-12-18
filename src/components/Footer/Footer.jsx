@@ -48,14 +48,12 @@ export default function Footer() {
           <Link to="/contact" className="footer-nav-link">contact us</Link>
           <Link to="/faq" className="footer-nav-link">faq</Link>
           <Link to="/shipping" className="footer-nav-link">shipping</Link>
-          <Link to="/tracking" className="footer-nav-link">order tracking</Link>
         </nav>
 
         <nav className="secondary-nav">
           <Link to="/privacy" className="footer-nav-link">privacy policy</Link>
           <Link to="/terms" className="footer-nav-link">terms</Link>
           <Link to="/accessibility" className="footer-nav-link">accessibility</Link>
-          <Link to="/cookies" className="footer-nav-link">cookie policy</Link>
         </nav>
 
         <div className="copyright">

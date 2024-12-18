@@ -1,4 +1,5 @@
 import React from 'react';
+import HeroBanner from './HeroBanner';
 import { Link } from 'react-router-dom';
 import ProductCard from '../Product/ProductCard/ProductCard';
 import './LandingPage.css';
@@ -67,35 +68,10 @@ const BestSelling = () => {
   );
 };
 
-export const LandingPage = () => {
+const LandingPage: React.FC = () => {
   return (
     <div className="landing-page">
-      <section className="hero-section">
-        <div className="section-container">
-          <div className="hero-content">
-            <h1 className="hero-title">
-              Modern Furniture
-            </h1>
-            <p className="hero-subtitle">
-              Furniture that reflects your good taste with a simple design and Organic material
-            </p>
-            <div className="hero-button-container">
-              <Link to="/products" className="hero-button">
-                Explore Now
-              </Link>
-            </div>
-          </div>
-          <div className="hero-image-container">
-            <img 
-              src="/images/image6.png" 
-              alt="Modern furniture showcase" 
-              className="hero-image"
-              loading="eager"
-            />
-          </div>
-        </div>
-      </section>
-
+      <HeroBanner />
       <BestSelling />
     </div>
   );

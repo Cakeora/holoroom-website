@@ -1,0 +1,61 @@
+.hero-banner {
+  background-image: url('/images/christmas-sale-banner.jpg'); /* Replace with your image path */
+  background-size: cover; /* Cover the entire area */
+  background-position: center; /* Center the image */
+  color: white;
+  height: 808px; /* Fixed height for the banner */
+  padding: 2rem; /* Adjust padding for responsiveness */
+  text-align: left; /* Align text to the left */
+  border-radius: 8px;
+  margin: 2rem 0;
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Stack items vertically */
+  justify-content: center; /* Center content vertically */
+}
+
+.hero-content {
+  max-width: 600px; /* Limit the width of the content */
+  margin-left: 0; /* Align content to the left */
+  margin-top: 2rem; /* Add margin to push content down */
+}
+
+.hero-banner h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero-banner p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero-button {
+  background-color: #f8faf9; /* Light background for button */
+  color: #224F34; /* Main theme color */
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  display: inline-block; /* Ensure the button is treated as a block */
+}
+
+.hero-button:hover {
+  background-color: #e2e8f0; /* Lighten on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-banner {
+    height: 808px; /* Maintain the same height on mobile */
+    padding: 1rem; /* Adjust padding for smaller screens */
+  }
+
+  .hero-banner h1 {
+    font-size: 2rem; /* Adjust font size for mobile */
+  }
+
+  .hero-banner p {
+    font-size: 1rem; /* Adjust font size for mobile */
+  }
+} 
